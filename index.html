@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Socket.IO chat</title>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { font: 13px Helvetica, Arial;margin:20px; }
+      form { padding: 3px;}
+      form textarea {width: 300px;height: 200px;border:1px solid #cccccc; padding: 5px;margin-right: .5%; }
+      form button { display: block;background: rgb(130, 224, 255); border: none;margin-top:10px;width:100px;height:30px;outline: none;cursor: pointer; }
+      #messages { list-style-type: none; margin: 0; padding: 0; }
+      #messages li { padding: 5px 10px; }
+      #messages li:nth-child(odd) { background: #eee; }
+      #messages { margin-bottom: 40px }
+    </style>
+  </head>
+  <body>
+
+    <form action="">
+      <textarea id="m"></textarea><button>发送</button>
+    </form>
+    <ul id="messages"></ul>
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+      $(function () {
+        var socket = io();
+        $('form').submit(function(){
+          socket.emit('chat message', $('#m').val());
+          $('#m').val('');
+          return false;
+        });
+        socket.on('chat message', function(msg){
+          $('#messages').append($('<li>').text(msg));
+          window.scrollTo(0, document.body.scrollHeight);
+        });
+
+//        键盘enter绑定textarea事件
+          document.onkeydown = function (event) {
+              var e = event || window.event || arguments.callee.caller.arguments[0];
+              if (e && e.keyCode == 13) {
+//                  alert(477)
+                  socket.emit('chat message', $('#m').val());
+                  $('#m').val('');
+                  return false;
+              }
+          };
+
+
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>send chat</title>
+    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            padding: 50px;
+        }
+        .alert{
+            width: 300px;
+            height: 200px;
+            position: fixed;
+            right: 20px;
+            bottom:20px;
+        }
+        .remain_message {
+            position: absolute;
+            top: 7px;
+            right: 0px;
+            display: block;
+            min-width: 16px;
+            height: 16px;
+            border-radius: 8px;
+            text-align: center;
+            background: #ff4542;
+            color: #fff;
+            font-size: 12px;
+            box-sizing: border-box;
+            padding: 0px 3px;
+            line-height: 16px;
+        }
+
+    </style>
+</head>
+<body>
+<ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active">
+        <a href="#home" aria-controls="home" role="tab" data-toggle="tab">
+            待审核
+            <span class="remain_message" id="remain_message">5</span>
+        </a>
+    </li>
+    <li role="presentation">
+        <a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">审核通过</a>
+    </li>
+    <li role="presentation">
+        <a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">审核驳回</a>
+    </li>
+</ul>
+<div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="home">1</div>
+    <div role="tabpanel" class="tab-pane" id="profile">2</div>
+    <div role="tabpanel" class="tab-pane" id="messages">3</div>
+    <div role="tabpanel" class="tab-pane" id="settings">4</div>
+</div>
+
+
+<div class="alert alert-warning alert-dismissible fade in" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+    <h4>通知</h4>
+    <p>您有一条新消息</p>
+    <p>
+        <button type="button" class="btn btn-primary">查看</button>
+    </p>
+</div>
+
+
+<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+    $(function () {
+
+    });
+</script>
+</body>
+</html>
